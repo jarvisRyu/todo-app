@@ -1,6 +1,7 @@
 package com.cordingrecipe.scheduledevelop.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -31,6 +32,10 @@ public class Schedule extends BaseEntity{
         this.username = username;
         this.todoTitle = todoTitle;
         this.todoContents = todoContents;
+    }
+    public void updateSchedule(String todoTitle,String todoContents){
+        this.todoTitle=todoTitle;
+        this.todoContents=todoContents;
     }
 }
 

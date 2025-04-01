@@ -1,6 +1,7 @@
 package com.cordingrecipe.scheduledevelop.controller;
 
 import com.cordingrecipe.scheduledevelop.dto.requestDto.ScheduleRequestDto;
+import com.cordingrecipe.scheduledevelop.dto.requestDto.ScheduleUpdateDto;
 import com.cordingrecipe.scheduledevelop.dto.responseDto.ScheduleFindAllResponseDto;
 import com.cordingrecipe.scheduledevelop.dto.responseDto.ScheduleFindByIdResponseDto;
 import com.cordingrecipe.scheduledevelop.dto.responseDto.ScheduleResponseDto;
@@ -40,5 +41,17 @@ public class ScheduleController {
         return new ResponseEntity<>(scheduleFindByIdResponseDto, HttpStatus.OK);
     }
 
+    @PatchMapping("/{id}")
+    public ResponseEntity<ScheduleFindByIdResponseDto> updateSchedule(@PathVariable Long id,
+                                                                      @RequestBody ScheduleUpdateDto dto){
+        ScheduleFindByIdResponseDto updateSchedule = scheduleService.updateSchedule(id, dto);
+        return new ResponseEntity<>(updateSchedule,HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        scheduleService.delete(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
 }

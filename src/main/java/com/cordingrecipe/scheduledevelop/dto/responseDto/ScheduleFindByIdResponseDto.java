@@ -22,4 +22,5 @@ public class ScheduleFindByIdResponseDto {
         this.createdAt = schedule.getCreatedAt();
         this.updatedAt = schedule.getUpdatedAt();
     }
+
 }
