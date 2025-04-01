@@ -27,8 +27,10 @@ public class Schedule extends BaseEntity{
 
     public Schedule(){} //기본생성자
 
-    public Schedule(Long id, String username) {
-        this.id = id;
+    public Schedule(String username, String todoTitle, String todoContents) {
         this.username = username;
+        this.todoTitle = todoTitle;
+        this.todoContents = todoContents;
     }
+}
 }
