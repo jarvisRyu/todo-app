@@ -1,9 +1,11 @@
 package com.cordingrecipe.scheduledevelop.dto.responseDto;
 
 import com.cordingrecipe.scheduledevelop.entity.Schedule;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 
+@Getter
 public class ScheduleResponseDto {
 
     //생성시 보여지는 dto
