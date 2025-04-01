@@ -3,6 +3,7 @@ package com.cordingrecipe.scheduledevelop.service;
 
 import com.cordingrecipe.scheduledevelop.dto.requestDto.ScheduleRequestDto;
 import com.cordingrecipe.scheduledevelop.dto.responseDto.ScheduleFindAllResponseDto;
+import com.cordingrecipe.scheduledevelop.dto.responseDto.ScheduleFindByIdResponseDto;
 import com.cordingrecipe.scheduledevelop.dto.responseDto.ScheduleResponseDto;
 import com.cordingrecipe.scheduledevelop.entity.Schedule;
 import com.cordingrecipe.scheduledevelop.repository.ScheduleRepository;
@@ -31,5 +32,11 @@ public class ScheduleService {
                 .map(ScheduleFindAllResponseDto::toDto)
                 .toList();
 
+    }
+
+    public ScheduleFindByIdResponseDto findById(Long id) {
+        Schedule byIdOrElseThrow = scheduleRepository.findByIdOrElseThrow(id);
+
+        return new ScheduleFindByIdResponseDto(byIdOrElseThrow);
     }
 }

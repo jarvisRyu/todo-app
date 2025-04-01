@@ -2,6 +2,7 @@ package com.cordingrecipe.scheduledevelop.controller;
 
 import com.cordingrecipe.scheduledevelop.dto.requestDto.ScheduleRequestDto;
 import com.cordingrecipe.scheduledevelop.dto.responseDto.ScheduleFindAllResponseDto;
+import com.cordingrecipe.scheduledevelop.dto.responseDto.ScheduleFindByIdResponseDto;
 import com.cordingrecipe.scheduledevelop.dto.responseDto.ScheduleResponseDto;
 import com.cordingrecipe.scheduledevelop.service.ScheduleService;
 import lombok.RequiredArgsConstructor;
@@ -21,16 +22,22 @@ public class ScheduleController {
 
 
     @PostMapping
-    public ResponseEntity<ScheduleResponseDto> saveSchedule(@RequestBody ScheduleRequestDto requestDto){
+    public ResponseEntity<ScheduleResponseDto> saveSchedule(@RequestBody ScheduleRequestDto requestDto) {
         ScheduleResponseDto responseDto = scheduleService.saveSchedule(requestDto);
-        return new ResponseEntity<>(responseDto,HttpStatus.CREATED);
+        return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
     }
 
 
     @GetMapping
     public ResponseEntity<List<ScheduleFindAllResponseDto>> findAll() {
         List<ScheduleFindAllResponseDto> findAllResponseDtoList = scheduleService.findAll();
-        return new ResponseEntity<>(findAllResponseDtoList,HttpStatus.OK);
+        return new ResponseEntity<>(findAllResponseDtoList, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ScheduleFindByIdResponseDto> findById(@PathVariable Long id) {
+        ScheduleFindByIdResponseDto scheduleFindByIdResponseDto = scheduleService.findById(id);
+        return new ResponseEntity<>(scheduleFindByIdResponseDto, HttpStatus.OK);
     }
 
 
