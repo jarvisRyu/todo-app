@@ -1,15 +1,15 @@
 package com.cordingrecipe.scheduledevelop.controller;
 
 import com.cordingrecipe.scheduledevelop.dto.requestDto.ScheduleRequestDto;
+import com.cordingrecipe.scheduledevelop.dto.responseDto.ScheduleFindAllResponseDto;
 import com.cordingrecipe.scheduledevelop.dto.responseDto.ScheduleResponseDto;
 import com.cordingrecipe.scheduledevelop.service.ScheduleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 //컨트롤러
 @RestController
@@ -26,6 +26,12 @@ public class ScheduleController {
         return new ResponseEntity<>(responseDto,HttpStatus.CREATED);
     }
 
-    //java=json 타입을 읽을 수 없음.
+
+    @GetMapping
+    public ResponseEntity<List<ScheduleFindAllResponseDto>> findAll() {
+        List<ScheduleFindAllResponseDto> findAllResponseDtoList = scheduleService.findAll();
+        return new ResponseEntity<>(findAllResponseDtoList,HttpStatus.OK);
+    }
+
 
 }
