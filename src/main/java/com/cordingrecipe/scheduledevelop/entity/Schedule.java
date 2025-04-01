@@ -33,4 +33,4 @@ public class Schedule extends BaseEntity{
         this.todoContents = todoContents;
     }
 }
-}
+
