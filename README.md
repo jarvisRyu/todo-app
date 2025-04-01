@@ -13,4 +13,4 @@ https://documenter.getpostman.com/view/43168025/2sB2cRD4ZA
 ![img.png](img.png)
 
 **Lv.2**  **ERD**
-![img_3.png](img_3.png)
+![img_4.png](img_4.png)
