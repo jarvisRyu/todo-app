@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public class ScheduleRequestDto {
-    //일정생성 request dto
+    // request dto
     private String username;
 
     private String todoTitle;

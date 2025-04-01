@@ -1,13 +1,7 @@
 package com.cordingrecipe.scheduledevelop.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
-
-import java.time.LocalDate;
 
 @Getter
 @Entity
@@ -18,13 +12,21 @@ public class Schedule extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false,unique = true)
+    @Column(nullable = false)
     private String username;
 
     @Column(nullable = false)
     private String todoTitle;
 
     private String todoContents;
+
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Schedule(){} //기본생성자
 
