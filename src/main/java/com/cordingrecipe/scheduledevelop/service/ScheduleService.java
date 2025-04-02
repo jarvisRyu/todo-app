@@ -21,7 +21,7 @@ public class ScheduleService {
 
     //생성
     public ScheduleResponseDto saveSchedule(ScheduleRequestDto requestDto) {
-        Schedule schedule = new Schedule(requestDto.getUsername(), requestDto.getTodoTitle(), requestDto.getTodoContents());
+        Schedule schedule = new Schedule(requestDto.getTodoTitle(), requestDto.getTodoContents());
 
         Schedule saveSchedule = scheduleRepository.save(schedule);
 
