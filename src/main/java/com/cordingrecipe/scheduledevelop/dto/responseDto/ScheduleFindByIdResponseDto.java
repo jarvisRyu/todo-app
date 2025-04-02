@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 public class ScheduleFindByIdResponseDto {
 
     private Long id;
-//    private String username;
+    private String username;
     private String todoTitle;
     private String todoContents;
     private LocalDateTime createdAt;
@@ -16,7 +16,7 @@ public class ScheduleFindByIdResponseDto {
 
     public ScheduleFindByIdResponseDto(Schedule schedule) {
         this.id = schedule.getId();
-//        this.username = schedule.getUsername();
+        this.username = schedule.getUser().getUsername();
         this.todoTitle = schedule.getTodoTitle();
         this.todoContents = schedule.getTodoContents();
         this.createdAt = schedule.getCreatedAt();

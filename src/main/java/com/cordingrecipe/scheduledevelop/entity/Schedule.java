@@ -11,9 +11,9 @@ public class Schedule extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-//
-//    @Column(nullable = false)
-//    private String username;
+
+    @Column(nullable = false)
+    private String username;
 
     @Column(nullable = false)
     private String todoTitle;
@@ -27,7 +27,6 @@ public class Schedule extends BaseEntity{
     public void setUser(User user) {
         this.user = user;
     }
-
     public Schedule(){} //기본생성자
 
 //    public Schedule(String username, String todoTitle, String todoContents) {
@@ -35,7 +34,8 @@ public class Schedule extends BaseEntity{
 //        this.todoTitle = todoTitle;
 //        this.todoContents = todoContents;
 //    }
-    public Schedule( String todoTitle, String todoContents) {
+    public Schedule( String username,String todoTitle, String todoContents) {
+        this.username=username;
         this.todoTitle = todoTitle;
         this.todoContents = todoContents;
     }
