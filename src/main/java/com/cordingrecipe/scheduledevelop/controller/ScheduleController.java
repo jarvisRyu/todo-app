@@ -34,7 +34,7 @@ public class ScheduleController {
         List<ScheduleFindAllResponseDto> findAllResponseDtoList = scheduleService.findAll();
         return new ResponseEntity<>(findAllResponseDtoList, HttpStatus.OK);
     }
-    //id 조회 -user id로 바꿔야함.
+    //id 조회
     @GetMapping("/{id}")
     public ResponseEntity<ScheduleFindByIdResponseDto> findById(@PathVariable Long id) {
         ScheduleFindByIdResponseDto scheduleFindByIdResponseDto = scheduleService.findById(id);

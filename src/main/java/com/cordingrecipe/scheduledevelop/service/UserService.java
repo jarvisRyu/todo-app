@@ -75,8 +75,8 @@ public class UserService {
         if (!password.equals(userToDelete.getPassword())) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "비밀번호가 일치하지않습니다.");
         }//비밀번호 일치하면
-        List<Schedule> userSchedules = scheduleRepository.findAllByUserId(id);
-        scheduleRepository.deleteAll(userSchedules);
+        List<Schedule> userSchedules = scheduleRepository.findAllByUserId(id);//id로 작성한 게시글 리스트
+        scheduleRepository.deleteAll(userSchedules); //전부삭제
 
         userRepository.delete(userToDelete);
     }
