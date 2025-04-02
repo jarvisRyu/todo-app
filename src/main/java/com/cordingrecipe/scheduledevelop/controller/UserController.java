@@ -48,7 +48,11 @@ public class UserController {
         UserFindByIdResponseDto updatedUser = userService.updateUser(id, dto);
         return new ResponseEntity<>(updatedUser,HttpStatus.OK);
     }
-
-
-
+    //유저삭제 - 삭제시 id로 생성된 일정들도 삭제되어야함.
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id,
+                                           @RequestParam(required = true) String password){
+        userService.deleteUser(id,password);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
