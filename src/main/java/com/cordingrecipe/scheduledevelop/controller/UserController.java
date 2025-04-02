@@ -2,6 +2,7 @@ package com.cordingrecipe.scheduledevelop.controller;
 
 import com.cordingrecipe.scheduledevelop.dto.requestDto.SignUpRequestDto;
 import com.cordingrecipe.scheduledevelop.dto.responseDto.SignupResponseDto;
+import com.cordingrecipe.scheduledevelop.dto.responseDto.UserFindByIdResponseDto;
 import com.cordingrecipe.scheduledevelop.entity.User;
 import com.cordingrecipe.scheduledevelop.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +23,15 @@ public class UserController {
         SignupResponseDto signupResponseDto = userService.signUp(requestDto);
         return new ResponseEntity<>(signupResponseDto, HttpStatus.CREATED);
     }
-//    //user id로 조회하기
-//    @GetMapping("/{id}") //id 조회시
-//    public ResponseEntity<UserRes>
+//
+//    @GetMapping
+//    public ResponseEntity<>
+
+    //user id로 조회하기
+    @GetMapping("/{id}") //user아이디로 조회하기
+    public ResponseEntity<UserFindByIdResponseDto> findById(@PathVariable Long id){
+        UserFindByIdResponseDto userById = userService.findById(id);
+
+        return new ResponseEntity<>(userById,HttpStatus.OK);
+    }
 }
