@@ -29,6 +29,11 @@ public class User extends BaseEntity{
         this.email=email;
         this.password=password;
     }
+
+    public void updateUser(String username,String email){
+        this.username=username;
+        this.email=email;
+    }
 }
 //email이 중복된 값이 저장되지못하게 설정
 //1 2 3 4 5

@@ -12,6 +12,7 @@ import com.cordingrecipe.scheduledevelop.repository.ScheduleRepository;
 import com.cordingrecipe.scheduledevelop.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -50,6 +51,7 @@ public class ScheduleService {
     }
 
     //id, dto 를 받으면 ->일정 제목 ,일정 내용 수정.
+    @Transactional
     public ScheduleFindByIdResponseDto updateSchedule(Long id, ScheduleUpdateDto dto) {
         //id에 해당하는 Entity 찾기
         Schedule schedule = scheduleRepository.findByIdOrElseThrow(id); //id로 조회
@@ -57,7 +59,7 @@ public class ScheduleService {
         Schedule saveSchedule = scheduleRepository.save(schedule); //데이터베이스에 save
         return new ScheduleFindByIdResponseDto(saveSchedule); //바뀐 entity 출력.
     }
-
+    //일정 삭제
     public void delete(Long id) {
         Schedule findSchedule = scheduleRepository.findByIdOrElseThrow(id);
         scheduleRepository.delete(findSchedule);

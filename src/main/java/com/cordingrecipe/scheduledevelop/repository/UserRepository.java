@@ -1,5 +1,6 @@
 package com.cordingrecipe.scheduledevelop.repository;
 
+import com.cordingrecipe.scheduledevelop.dto.requestDto.UserUpdateRequestDto;
 import com.cordingrecipe.scheduledevelop.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.HttpStatus;
@@ -18,5 +19,7 @@ public interface UserRepository extends JpaRepository<User,Long> {
     default User findByIdOrElseThrow(Long id) {
         return findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Does not exist id = " + id));
     }
+
+
 }
 

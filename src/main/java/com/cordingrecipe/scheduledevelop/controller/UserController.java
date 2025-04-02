@@ -1,14 +1,17 @@
 package com.cordingrecipe.scheduledevelop.controller;
 
 import com.cordingrecipe.scheduledevelop.dto.requestDto.SignUpRequestDto;
+import com.cordingrecipe.scheduledevelop.dto.requestDto.UserUpdateRequestDto;
 import com.cordingrecipe.scheduledevelop.dto.responseDto.SignupResponseDto;
+import com.cordingrecipe.scheduledevelop.dto.responseDto.UserFindAllResponseDto;
 import com.cordingrecipe.scheduledevelop.dto.responseDto.UserFindByIdResponseDto;
-import com.cordingrecipe.scheduledevelop.entity.User;
 import com.cordingrecipe.scheduledevelop.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/users")
@@ -23,9 +26,12 @@ public class UserController {
         SignupResponseDto signupResponseDto = userService.signUp(requestDto);
         return new ResponseEntity<>(signupResponseDto, HttpStatus.CREATED);
     }
-//
-//    @GetMapping
-//    public ResponseEntity<>
+    //user 전체조회
+    @GetMapping
+    public ResponseEntity<List<UserFindAllResponseDto>> findAll(){
+        List<UserFindAllResponseDto> findAllResponseDtos = userService.findAll();
+        return new ResponseEntity<>(findAllResponseDtos,HttpStatus.OK);
+    }
 
     //user id로 조회하기
     @GetMapping("/{id}") //user아이디로 조회하기
@@ -34,4 +40,15 @@ public class UserController {
 
         return new ResponseEntity<>(userById,HttpStatus.OK);
     }
+
+    //user 수정
+    @PatchMapping("/{id}")
+    public ResponseEntity<UserFindByIdResponseDto> updateUser(@PathVariable Long id ,
+                                                              @RequestBody UserUpdateRequestDto dto){
+        UserFindByIdResponseDto updatedUser = userService.updateUser(id, dto);
+        return new ResponseEntity<>(updatedUser,HttpStatus.OK);
+    }
+
+
+
 }
