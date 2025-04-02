@@ -4,18 +4,16 @@ import lombok.Getter;
 
 @Getter
 public class ScheduleRequestDto {
-    // request dto
+    //일정 생성요청 dto
     private Long id;
-
-    private String username;
 
     private String todoTitle;
 
     private String todoContents;
 
-    public ScheduleRequestDto(Long id,String username, String todoTitle, String todoContents) {
+    public ScheduleRequestDto(Long id,String todoTitle, String todoContents) {
         this.id=id;
-        this.username = username;
+
         this.todoTitle = todoTitle;
         this.todoContents = todoContents;
     }

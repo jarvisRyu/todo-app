@@ -23,20 +23,19 @@ public class ScheduleService {
     private final UserRepository userRepository;
     //생성
     public ScheduleResponseDto saveSchedule(ScheduleRequestDto requestDto) {
-
+        //입력받은 값 id,username,title,contents
 
         User byIdOrElseThrow = userRepository.findByIdOrElseThrow(requestDto.getId());
-
-
-        //입력받은 값 id,username,title,contents
-        Schedule schedule = new Schedule(byIdOrElseThrow.getUsername(),requestDto.getTodoTitle(), requestDto.getTodoContents());
-        //반환될땐 이름+작성일+수정일 추가되서 보여져야함.
+        //입력된 id검증 없으면 NOT_FOUND
+        Schedule schedule = new Schedule(requestDto.getTodoTitle(), requestDto.getTodoContents());
+        //새일정 생성: 이름,할일,내용 담아주기
         schedule.setUser(byIdOrElseThrow);
+        //대칭키 User 생성키 넣어주기
         Schedule saveSchedule = scheduleRepository.save(schedule);
-
+        //DB에 저장
         return new ScheduleResponseDto(saveSchedule);
     }
-    //조회
+    //전체 조회
     public List<ScheduleFindAllResponseDto> findAll() {
         return  scheduleRepository.findAll()
                 .stream()
