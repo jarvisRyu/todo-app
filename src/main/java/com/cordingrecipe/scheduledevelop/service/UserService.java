@@ -1,23 +1,18 @@
 package com.cordingrecipe.scheduledevelop.service;
 
+
+import com.cordingrecipe.scheduledevelop.dto.requestDto.LoginRequestDto;
 import com.cordingrecipe.scheduledevelop.dto.requestDto.SignUpRequestDto;
 import com.cordingrecipe.scheduledevelop.dto.requestDto.UserUpdateRequestDto;
-import com.cordingrecipe.scheduledevelop.dto.responseDto.ScheduleFindAllResponseDto;
-import com.cordingrecipe.scheduledevelop.dto.responseDto.SignupResponseDto;
-import com.cordingrecipe.scheduledevelop.dto.responseDto.UserFindAllResponseDto;
-import com.cordingrecipe.scheduledevelop.dto.responseDto.UserFindByIdResponseDto;
+import com.cordingrecipe.scheduledevelop.dto.responseDto.*;
 import com.cordingrecipe.scheduledevelop.entity.Schedule;
 import com.cordingrecipe.scheduledevelop.entity.User;
 import com.cordingrecipe.scheduledevelop.repository.ScheduleRepository;
 import com.cordingrecipe.scheduledevelop.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -80,7 +75,17 @@ public class UserService {
 
         userRepository.delete(userToDelete);
     }
+    //유저 로그인
+    public LoginResponseDto login(LoginRequestDto request) {
+        User loginUser = userRepository.findUserByEmailAndPassword(request.getEmail(), request.getPassword());
+        Long index  = loginUser.getId();
+
+        return new LoginResponseDto(index);
+    }
 }
-//user 삭제
+//  public LoginResponseDto findById(Long id) {
+//
+//        return userRepository.findById(id);
+//    }
 
 

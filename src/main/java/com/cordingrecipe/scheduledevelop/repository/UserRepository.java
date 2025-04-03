@@ -12,6 +12,8 @@ public interface UserRepository extends JpaRepository<User,Long> {
 
     //이름으로 유저 정보조회
     Optional<User> findUserByUsername(String username);
+    //아이디,패스워드로 id 조회하기
+    Optional<User> findByEmailAndPassword(String email, String password);
 
     default User findUserByNameOrElseThrow(String username){
         return findUserByUsername(username).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,"Does not exist username ="+username));
@@ -20,6 +22,9 @@ public interface UserRepository extends JpaRepository<User,Long> {
         return findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Does not exist id = " + id));
     }
 
+    default User findUserByEmailAndPassword(String email, String password){
+        return findByEmailAndPassword(email,password).orElseThrow(()->new ResponseStatusException(HttpStatus.UNAUTHORIZED ,"이메일 또는 비밀번호가 일치하지 않습니다."));
 
+    }
 }
 
