@@ -12,7 +12,7 @@ import java.io.IOException;
 @Slf4j
 public class LoginFilter implements Filter {
 
-    private static final String[] WHITE_LIST = {"/users/signup", "/users/login", "/users/logout"};
+    private static final String[] WHITE_LIST = {"/users/signup", "/users/login"};
 
     //필터구현
     @Override
@@ -30,8 +30,6 @@ public class LoginFilter implements Filter {
             HttpSession session = httpRequest.getSession(false);
             if (session == null || session.getAttribute("loginUser") == null) {
                 httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                httpResponse.setContentType("application/json;charset=UTF-8");
-                httpResponse.getWriter().write("{\"error\": \"로그인이 필요합니다.\"}");
                 return;
             }
         }

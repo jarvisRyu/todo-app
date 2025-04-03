@@ -70,13 +70,13 @@ public class UserController {
     //로그인기능
     @PostMapping("/login")
     public ResponseEntity<UserLoginResponseDto> login(@Valid @RequestBody LoginRequestDto requestDto,
-                                                      HttpServletRequest httpServletRequest){
+                                                      HttpServletRequest httpServletRequest) {
 
         //이메일과 비밀번호로 id찾기
-        UserLoginResponseDto responseDto  = userService.login(requestDto);
+        UserLoginResponseDto responseDto = userService.login(requestDto);
         Long userId = responseDto.getId();
         //로그인 실패시
-        if(userId==null){
+        if (userId == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         //맞으면 세션 생성하고 저장
@@ -84,11 +84,20 @@ public class UserController {
         //회원 정보 조회
         UserFindByIdResponseDto loginUser = userService.findById(userId);
         //Session에 정보저장
-        session.setAttribute(Const.LOGIN_USER,loginUser);
+        session.setAttribute(Const.LOGIN_USER, loginUser);
 
-        return new ResponseEntity<>(responseDto,HttpStatus.OK);
+        return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 
+    @PostMapping("/logout")
+    public ResponseEntity<Void> logout(HttpServletRequest request) {
+
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate(); //세션 삭제
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
 
 

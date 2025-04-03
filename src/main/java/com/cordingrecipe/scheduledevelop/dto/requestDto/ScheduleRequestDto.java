@@ -6,7 +6,7 @@ import lombok.Getter;
 public class ScheduleRequestDto {
     //일정 생성요청 dto
     private Long id;
-    private String todoTitle;
+        private String todoTitle;
     private String todoContents;
 
     public ScheduleRequestDto(Long id,String todoTitle, String todoContents) {
