@@ -6,7 +6,7 @@ import lombok.Getter;
 @Getter
 public class ScheduleFindAllResponseDto {
 
-    //생성시 보여지는 dto
+
     private Long id;
     private Long userId;
     private String username;

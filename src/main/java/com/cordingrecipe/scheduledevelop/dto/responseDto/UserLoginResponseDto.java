@@ -1,15 +1,14 @@
 package com.cordingrecipe.scheduledevelop.dto.responseDto;
 
-import com.cordingrecipe.scheduledevelop.entity.User;
 import lombok.Getter;
 
 @Getter
-public class LoginResponseDto {
+public class UserLoginResponseDto {
 
     private Long id;
 
 
-    public LoginResponseDto(Long id) {
+    public UserLoginResponseDto(Long id) {
         this.id = id;
 
     }

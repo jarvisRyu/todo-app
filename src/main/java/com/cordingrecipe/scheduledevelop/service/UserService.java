@@ -26,10 +26,10 @@ public class UserService {
     private final ScheduleRepository scheduleRepository;
 
     //유저 생성
-    public SignupResponseDto signUp(SignUpRequestDto dto) {
+    public UserSignupResponseDto signUp(SignUpRequestDto dto) {
         User user = new User(dto.getUsername(), dto.getEmail(), dto.getPassword());
         User saveUser = userRepository.save(user);
-        return new SignupResponseDto(saveUser);
+        return new UserSignupResponseDto(saveUser);
     }
 
     //유저 id조회
@@ -76,14 +76,14 @@ public class UserService {
         userRepository.delete(userToDelete);
     }
     //유저 로그인
-    public LoginResponseDto login(LoginRequestDto request) {
+    public UserLoginResponseDto login(LoginRequestDto request) {
         User loginUser = userRepository.findUserByEmailAndPassword(request.getEmail(), request.getPassword());
         Long index  = loginUser.getId();
 
-        return new LoginResponseDto(index);
+        return new UserLoginResponseDto(index);
     }
 }
-//  public LoginResponseDto findById(Long id) {
+//  public UserLoginResponseDto findById(Long id) {
 //
 //        return userRepository.findById(id);
 //    }

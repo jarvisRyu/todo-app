@@ -1,11 +1,11 @@
 package com.cordingrecipe.scheduledevelop.controller;
 
-import com.cordingrecipe.scheduledevelop.Const;
+import com.cordingrecipe.scheduledevelop.dto.responseDto.UserLoginResponseDto;
+import com.cordingrecipe.scheduledevelop.filter.Const;
 import com.cordingrecipe.scheduledevelop.dto.requestDto.LoginRequestDto;
 import com.cordingrecipe.scheduledevelop.dto.requestDto.SignUpRequestDto;
 import com.cordingrecipe.scheduledevelop.dto.requestDto.UserUpdateRequestDto;
-import com.cordingrecipe.scheduledevelop.dto.responseDto.LoginResponseDto;
-import com.cordingrecipe.scheduledevelop.dto.responseDto.SignupResponseDto;
+import com.cordingrecipe.scheduledevelop.dto.responseDto.UserSignupResponseDto;
 import com.cordingrecipe.scheduledevelop.dto.responseDto.UserFindAllResponseDto;
 import com.cordingrecipe.scheduledevelop.dto.responseDto.UserFindByIdResponseDto;
 import com.cordingrecipe.scheduledevelop.service.UserService;
@@ -31,9 +31,9 @@ public class UserController {
 
     //user 생성-회원가입
     @PostMapping("/signup")
-    public ResponseEntity<SignupResponseDto> signUp(@RequestBody SignUpRequestDto requestDto) {
-        SignupResponseDto signupResponseDto = userService.signUp(requestDto);
-        return new ResponseEntity<>(signupResponseDto, HttpStatus.CREATED);
+    public ResponseEntity<UserSignupResponseDto> signUp(@RequestBody SignUpRequestDto requestDto) {
+        UserSignupResponseDto userSignupResponseDto = userService.signUp(requestDto);
+        return new ResponseEntity<>(userSignupResponseDto, HttpStatus.CREATED);
     }
 
     //user 전체조회
@@ -69,11 +69,11 @@ public class UserController {
 
     //로그인기능
     @PostMapping("/login")
-    public ResponseEntity<LoginResponseDto> login(@Valid @RequestBody LoginRequestDto requestDto,
-                        HttpServletRequest httpServletRequest){
+    public ResponseEntity<UserLoginResponseDto> login(@Valid @RequestBody LoginRequestDto requestDto,
+                                                      HttpServletRequest httpServletRequest){
 
         //이메일과 비밀번호로 id찾기
-        LoginResponseDto responseDto  = userService.login(requestDto);
+        UserLoginResponseDto responseDto  = userService.login(requestDto);
         Long userId = responseDto.getId();
         //로그인 실패시
         if(userId==null){
