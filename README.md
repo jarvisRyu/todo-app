@@ -1,5 +1,6 @@
 ## 일정관리 앱 만들기
 
+사용자는 일정을 생성, 조회, 수정, 삭제할 수 있으며, 사용자 인증 기능도 포함되어 있습니다.
 
 ## API 명세서 
 https://documenter.getpostman.com/view/43168025/2sB2cRD4ZA
